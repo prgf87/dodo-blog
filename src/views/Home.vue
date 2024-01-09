@@ -1,15 +1,21 @@
 <template>
   <div class="home">
     <h1>Hello {{ name }}</h1>
-    <input type="text" value="name" />
-    <button @click="handleClick">Change Name</button>
+    <p ref="p">Hi, my name is {{ name }} and I am {{ age }}</p>
+    <input v-model="name" type="text" />
+    <button @click="age++">+</button>
   </div>
 </template>
 
 <script setup>
-let name = "Pedro";
+import { ref } from "vue";
+
+const name = ref("Pedro");
+const age = ref(55);
+
+const p = ref(null);
 
 function handleClick() {
-  console.log("clicked!");
+  name.value = "Gilbert";
 }
 </script>
