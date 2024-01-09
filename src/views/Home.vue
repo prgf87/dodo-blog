@@ -2,7 +2,8 @@
   <div class="home">
     <input type="text" v-model="search" />
     <p>Search term - {{ search }}</p>
-    <div v-for="skill in skills" :key="skill">{{ skill }}</div>
+    <!-- <div v-for="skill in skills" :key="skill">{{ skill }}</div> -->
+    <div v-for="match in matches" :key="match">{{ match }}</div>
   </div>
   <!-- <div >
     <p ref="p">
@@ -25,13 +26,17 @@ import { ref, reactive, computed } from "vue";
 const personOne = ref({ name: "Pedro", age: 37 });
 const personTwo = reactive({ name: "Terry", age: 25 });
 
-const skills = ["css", "html", "javascript"];
+const skills = ref(["css", "html", "javascript"]);
 
 const search = ref("");
 
-const job = computed(() => {
-  return { role: "developer", skills: ["css", "html", "javascript"], xp: 5 };
+const matches = computed(() => {
+  return skills.value.filter((skill) => skill.includes(search.value));
 });
+
+// const job = computed(() => {
+//   return { role: "developer", skills: ["css", "html", "javascript"], xp: 5 };
+// });
 
 const p = ref(null);
 
